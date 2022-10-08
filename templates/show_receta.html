@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a href="/inicio_sesion" class="navbar-brand">Inicio</a>
+        <a href="/agregar_receta" class="navbar-brand">Agregar Receta</a>
+        <a href="/actualizar_datos_usuario" class="navbar-brand">Actualizar Mis Datos</a>
+        <form class="d-flex" role="search">
+            <a class="btn btn-warning" href="/cerrar_sesion" type="submit">Salir</a>
+        </form>
+    </div>
+</nav>
+<hr>
+<hr>
+<h1>#{{ receta_info.id }} {{ receta_info.nombre }}</h1>
+
+<h3>Descripción:</h3>
+<h4>{{ receta_info.descripcion }}</h4>
+<hr>
+<hr>
+<h3>Instrucciones:</h3>
+<h4>{{ receta_info.instruccion }}</h4>
+<hr>
+<hr>
+<div>
+    <h3>Receta de menos de 30 min</h3>
+    {% if receta_info.less_30min == 1: %}
+        <i class="bi bi-check-circle"></i>
+    {% endif %}
+    {% if receta_info.less_30min == 0: %}
+        <i class="bi bi-x-circle"></i>
+    {% endif %}
+
+<div>
+    <h3>Usuarios a los que les gusta esta receta</h3>
+    
+</div
+
+<div class="card" style="width: 18rem;">
+    <ul class="list-group list-group-flush">
+        {% for user in usuarios_suscritos %}
+            <li>{{ user.first_name }} {{ user.last_name }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+{% endblock %}

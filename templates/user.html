@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+	<nav class="navbar navbar-dark bg-dark">
+    	<div class="container-fluid">
+      		<a href="/inicio_sesion" class="navbar-brand">Inicio</a>
+			<a href="/agregar_receta" class="navbar-brand">Agregar Receta</a>
+			<a href="/actualizar_datos_usuario" class="navbar-brand">Actualizar Mis Datos</a>
+      		<form class="d-flex" role="search">
+        		<a class="btn btn-warning" href="/cerrar_sesion" type="submit">Salir</a>
+      		</form>
+    	</div>
+  	</nav>
+
+    <h1>Bienvenido {{ nombre }} {{ apellido }}</h1>
+	<h3>Recetas Disponibles</h3>
+		<table class="table table-dark">
+			<thead>
+				<th>Receta</th>
+				<th>Acciones</th>
+			</thead>
+			<tbody>
+				{% for receta in recetas: %}
+					<tr class="table-active">
+						<td><a href="/show/receta/{{ receta.id }}">{{ receta.nombre }}</a></td>
+						<td><a href="/agregar/like/{{ receta.id }}" class="btn btn-warning">Suscribirse</a></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	<h3>Recetas que te gustan:</h3>
+		<table class="table table-dark">
+			<thead>
+				<th>Receta</th>
+				<th>Descripción</th>
+			</thead>
+			<tbody>
+				{% for receta in recetas_agregadas: %}
+					<tr class="table-active">
+						<td><a href="/show/receta/{{ receta.id }}">{{ receta.nombre }}</a></td>
+						<td>{{ receta.descripcion }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+{% endblock %}
